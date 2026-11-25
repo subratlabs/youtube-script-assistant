@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Script Assistant</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>YouTube Script Assistant</h1>
+        <p>Create better YouTube content with AI.</p>
+    </header>
+
+    <main>
+        <section id="video-form-section">
+    <h2>Create Your Video</h2>
+    <p>Turn your video idea into a complete content plan.</p>
+
+    <form id="video-form">
+
+        <div>
+            <label for="topic">Video Topic</label>
+            <input
+                type="text"
+                id="topic"
+                name="topic"
+                placeholder="e.g. Python for Beginners"
+                minlength="3"
+                maxlength="200"
+                required
+            >
+        </div>
+
+        <div>
+            <label for="target-audience">Target Audience</label>
+            <select id="target-audience" name="target_audience" required>
+                <option value="Beginners">Beginners</option>
+                <option value="Intermediate learners">Intermediate learners</option>
+                <option value="Professionals">Professionals</option>
+                <option value="Students">Students</option>
+                <option value="General audience">General audience</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="language">Language</label>
+            <select id="language" name="language" required>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Hinglish">Hinglish</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="duration">Video Duration</label>
+            <select id="duration" name="duration" required>
+                <option value="1">1 minute</option>
+                <option value="3">3 minutes</option>
+                <option value="5" selected>5 minutes</option>
+                <option value="8">8 minutes</option>
+                <option value="10">10 minutes</option>
+                <option value="15">15 minutes</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="content-type">Content Type</label>
+            <select id="content-type" name="content_type" required>
+                <option value="Educational">Educational</option>
+                <option value="Tutorial">Tutorial</option>
+                <option value="Storytelling">Storytelling</option>
+                <option value="Technology">Technology</option>
+                <option value="Product Review">Product Review</option>
+                <option value="Motivational">Motivational</option>
+                <option value="Explainer">Explainer</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="tone">Tone</label>
+            <select id="tone" name="tone" required>
+                <option value="Friendly">Friendly</option>
+                <option value="Conversational">Conversational</option>
+                <option value="Professional">Professional</option>
+                <option value="Funny">Funny</option>
+                <option value="Informative">Informative</option>
+                <option value="Storytelling">Storytelling</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="instructions">Additional Instructions (Optional)</label>
+            <textarea
+                id="instructions"
+                name="instructions"
+                maxlength="1000"
+                placeholder="Tell the AI what you want..."
+            ></textarea>
+        </div>
+
+       <button id="create-video-plan-btn" type="submit">Create Video Plan</button>
+
+    </form>
+</section>
+<section id="results-section">
+    <h2>Your Generated Content</h2>
+    <p>Your AI-generated content will appear here.</p>
+
+    <div id="titles-result">
+        <h3>Video Titles</h3>
+        <div id="titles-list"></div>
+    </div>
+
+    <div id="hooks-result">
+        <h3>Opening Hooks</h3>
+        <div id="hooks-list"></div>
+    </div>
+
+    <div id="outline-result">
+        <h3>Video Outline</h3>
+        <div id="outline-list"></div>
+    </div>
+
+    <div id="script-controls">
+    <button type="button" id="generate-script-btn">
+        Generate Full Script
+    </button>
+</div>
+
+   <div id="script-result">
+    <h3>Full Script</h3>
+
+    <div class="script-actions">
+        <button id="copy-script-btn" type="button">
+            Copy Full Script
+        </button>
+
+        <button id="download-script-btn" type="button">
+            Download Script (.txt)
+        </button>
+    </div>
+
+    <div id="script-content"></div>
+
+    <div id="script-editor-container">
+    <h3>Edit Your Script</h3>
+
+    <textarea
+        id="script-editor"
+        rows="15"
+        placeholder="Your generated script will appear here for editing..."
+    ></textarea>
+
+   <button id="save-script-btn" type="button">
+        Save Edited Script
+    </button>
+</div>
+
+</div> <!-- End of script-result -->
+
+<div id="saved-scripts-section">
+    <h2>My Saved Scripts</h2>
+
+    <div id="saved-scripts-search">
+    <input
+        type="text"
+        id="search-saved-scripts"
+        placeholder="Search scripts by title or topic..."
+    />
+    <select id="sort-saved-scripts">
+    <option value="newest">Newest first</option>
+    <option value="oldest">Oldest first</option>
+</select>
+</div>
+
+    <button id="save-to-database-btn" type="button">
+        Save Script to Database
+    </button>
+
+    <div id="saved-scripts-list">
+        <p>No saved scripts loaded yet.</p>
+    </div>
+</div>
+
+
+    <div id="regeneration-controls">
+    <h3>Improve a Script Section</h3>
+
+    <label for="section-name">Section name</label>
+    <input
+        type="text"
+        id="section-name"
+        placeholder="e.g. Introduction"
+        required
+    >
+
+    <label for="current-section">Current section text</label>
+    <textarea
+        id="current-section"
+        rows="5"
+        placeholder="Paste the section you want to improve"
+        required
+    ></textarea>
+
+    <button type="button" id="regenerate-section-btn">
+        Regenerate Section
+    </button>
+
+    <div id="regenerated-section-result"></div>
+</div>
+
+    <div id="visuals-result">
+        <h3>Visual Suggestions</h3>
+        <div id="visuals-list"></div>
+    </div>
+
+    <button type="button" id="generate-visuals-btn">
+    Generate Visual Suggestions
+</button>
+
+    <div id="description-result">
+        <h3>YouTube Description</h3>
+        <div id="description-content"></div>
+    </div>
+
+    <button type="button" id="generate-description-btn">
+    Generate YouTube Description
+</button>
+
+</section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
